@@ -1,0 +1,883 @@
+
+/* Prevent any scrollbars */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* No scrolling at all */
+  height: 100%;      /* Force to fit viewport */
+  width: 100%;
+}
+body {
+  background: #ffffff;
+  color: black;
+  font-family: 'Patrick Hand', cursive;
+  margin: 0;
+  padding: 40px;
+}
+
+.container {
+  background: #ffffff;
+  border: 3px solid black;
+  box-shadow: 4px 4px 0px black;
+  width: 90vw;   /* Instead of 1450px */
+  height: 90vh;  /* Instead of 650px */
+  border-radius: 20px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px 40px;
+  box-sizing: border-box;
+}
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 0px;
+  margin-bottom: 0; /* remove if any */
+}
+
+.search {
+  padding: 10px 20px;
+  border: 3px solid;
+  border-radius: 100px;
+  background-color: #f0f0f0;
+  font-size: 16px;
+  outline: none;
+  box-shadow: 0px 1px;
+}
+
+/* Wrapper to hold audio player and playlist side by side */
+.content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  height: 100%;
+  width: 100%;
+}
+
+
+/* 🎵 Left: Audio Player */
+.audio-player {
+ flex: 1;                   /* Take available vertical space */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  max-height: 100%;          /* Never exceed container height */
+  box-sizing: border-box;
+} 
+
+.player {
+   background: white;
+  border-radius: 20px;
+  width: 250px;
+  height: 60vh;               /* Fits inside the container */
+  padding: 8px;
+  text-align: center;
+  border: 4px solid black;
+  box-shadow: 0px 4px 4px black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cover {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.title {
+  margin: 15px 0;
+  font-size: 1.2em;
+}
+
+.controls {
+  width: 100%;
+}
+
+button {
+  background-color: #191414;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1ed760;
+  color: white;
+}
+
+input[type="range"] {
+  width: 100%;
+}
+
+.queue-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  background-color: #ffffff;
+  padding: 5px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 0 black;
+  border: 3px solid black;
+  font-family: 'Comic Neue', cursive;
+  height: 250px; /* Adjust based on your preference */
+  width:250px;
+}
+
+.queue-box ul {
+  max-height: 250px;
+  overflow-y: auto;
+  padding: 0px;
+  list-style: none;
+  margin: 0px;
+  scrollbar-width: thin;
+}
+
+.queue-box ul::-webkit-scrollbar {
+  width: 6px;
+}
+
+.queue-box ul::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 20px;
+}
+
+.queue-box ul::-webkit-scrollbar-track {
+  background: #cf4444;
+}
+
+.queue-box li {
+  margin: 20px 20px;
+  border-bottom: 1px solid black;
+  padding-bottom: 5px;
+}
+
+.queue-box li:last-child {
+  border-bottom: none;
+}
+
+.queue-box li:hover {
+  transform: scale(1.02);
+  font-weight: bold;
+  color: #6e1db9;
+}
+
+/* ✅ Right: Playlist Navigation */
+.navigation {
+  width: 200px;
+  display: flex;
+  flex-direction: column;  /* ✅ this was row – now fixed */
+  justify-content:center;
+  align-items: center;
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0px 4px 4px black;
+}
+
+
+.library h3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0px;
+  padding-top: 0px;
+  width: 200px;
+}
+
+.library ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 150px;
+  overflow-y: auto;
+  padding: 0;
+  list-style: none;
+  margin: 0;
+  scrollbar-width: thin;
+  width: auto;
+}
+
+.library ul::-webkit-scrollbar {
+  width: 6px;
+}
+
+.library ul::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+
+.library ul::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+.library li:last-child {
+  border-bottom: none;
+}
+
+.library li {
+  margin: 5px 0;
+  border-bottom: 1px solid black;
+  padding-bottom: 5px;
+}
+
+
+.library li:hover {
+  transform: scale(1.02);
+  font-weight: bold;
+  color: #6e1db9;
+}
+
+/* Navigation Bar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 3px solid black;
+  border-radius: 20px;
+  background-color: #ffffff;
+  padding: 10px 30px;
+  margin-bottom:20px;
+  box-shadow: 4px 4px 0px black;
+  font-family: 'Patrick Hand', cursive;
+}
+
+.navbar .logo {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-links li a:hover {
+  background-color: #1ed760;
+  color: white;
+}
+/* 📦 Stack playlist and trivia vertically */
+.right-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+
+/* 🎼 Playlist Box */
+.library-box {
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0px 4px 4px black;
+  width: 100%;
+}
+
+/* ✅ Trivia inside audio player - aligned & styled */
+/* Trivia Pop-up container */
+.trivia-trigger{
+  position: relative;
+  cursor: pointer;
+  margin-top: 35px;
+}
+.trivia-popup {
+  color: #040505; 
+  position: fixed;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  padding: 10px 15px;
+  border: 2px solid black;
+  border-radius: 20px;
+  box-shadow: 4px 4px 0 black;
+  font-family: 'Comic Neue', cursive;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  z-index: 9999;
+  height: 140px;
+  display: none; /* hide until triggered */
+}
+
+/* Inner content same as your box */
+.trivia-popup h3 {
+  margin: 0 0 10px 0;
+}
+
+.trivia-popup p {
+  font-size: 16px;
+ 
+}
+
+/* Dark overlay behind the popup */
+.trivia-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 9998;
+  display: none;
+}
+
+/* song-popup.css - include with <link rel="stylesheet" href="song-popup.css"> */
+
+/* overlay */
+.song-info-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2500;
+}
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 0; /* No extra space */
+}
+
+.volume-control h1 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.volume-control input[type="range"] {
+  margin-left: 5px; /* small space so they don’t touch */
+}
+
+
+/* popup box */
+.song-info-box {
+  background: #fff;
+  color: #111;
+  border-radius: 14px;
+  padding: 18px;
+  max-width: 360px;
+  width: calc(100% - 40px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  font-family: 'Patrick Hand', cursive;
+}
+
+/* close button */
+.song-info-close {
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* content formatting */
+.song-info-box h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+}
+.song-info-box p {
+  margin: 6px 0;
+  font-size: 15px;
+}
+
+.controls {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center horizontally */
+  justify-content: center; /* center vertically within this block */
+  padding: 10px 0;
+}
+
+.control-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.control-buttons button {
+  background-color: #7ce2a3;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 1.2em;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.control-buttons button:hover {
+  background-color: #9447db;
+  transform: scale(1.1);
+}
+
+/* 🎯 Recommended Songs Box */
+.recommended-container {
+  background-color: #ffffff;
+  border: 3px solid black;
+  border-radius: 20px;
+  box-shadow: 0px 4px 0px black;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 700px;
+  width: 100%;
+}
+
+.recommended h3 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.recommended ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-height: 350px;  /* Adjust based on your design */
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.recommended ul::-webkit-scrollbar {
+  width: 6px;
+}
+.recommended ul::-webkit-scrollbar-thumb {
+  background-color: #999;
+  border-radius: 10px;
+}
+
+.recommended ul li {
+  background-color: #f7f7f7;
+  padding: 12px 15px;
+  border-radius: 12px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  border: 2px solid black;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+  font-size: 20px;
+}
+
+.recommended ul li:hover {
+  background-color: #e3d6fc;
+  transform: scale(1.02);
+  cursor: pointer;
+  color: #6e1db9;
+}
+
+/* Progress Bar Styling */
+#progress {
+  width: 100%;
+  height: 8px;
+  background: #ddd;
+  border-radius: 10px;
+  outline: none;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#progress::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #4ade80; /* A green tone */
+  border: 2px solid #2d6a4f;
+  cursor: pointer;
+  box-shadow: 0 0 2px rgba(0,0,0,0.3);
+  transition: background 0.3s ease;
+}
+
+#progress::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #4ade80;
+  border: 2px solid #2d6a4f;
+  cursor: pointer;
+}
+
+#progress:hover {
+  background: #bbb;
+}
+
+.queue-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.queue-item {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.queue-item:hover {
+  background-color: #f0f0f0;
+}
+
+.queue-item.playing {
+  background-color: #d0f0ff;
+  font-weight: bold;
+}
+/* 🎯 Add-to-Queue & Playlist Buttons inside Recommended Songs */
+.recommended-song {
+  position: relative;
+  padding-right: 130px; /* space for the buttons */
+}
+
+.recommended-song .add-buttons {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.recommended-song .add-buttons button {
+  padding: 6px 10px;
+  font-size: 12px;
+  background-color: #ffffff;
+  color: black;
+  border: 2px solid #555;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.recommended-song .add-buttons button:hover {
+  background-color: #6e1db9;
+  color: white;
+  border-color: #6e1db9;
+}
+
+/* --- 📂 Playlist Management Additions --- */
+.library-box #playlistList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px;
+  max-height: 150px;
+  overflow-y: auto;
+  width: 100%;
+  font-size: 16px;
+}
+
+.library-box #playlistList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 8px;
+  border-bottom: 1px solid black;
+  font-family: 'Comic Neue', cursive;
+  transition: background 0.2s;
+}
+
+.library-box #playlistList li:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.01);
+  color: #6e1db9;
+  font-weight: bold;
+}
+
+/* ✖️ Delete Playlist Button */
+.library-box #playlistList li button.delete-playlist {
+  background: transparent;
+  border: none;
+  color: #d11a2a;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.library-box #playlistList li button.delete-playlist:hover {
+  color: #ff0000;
+  transform: scale(1.2);
+}
+
+/* ➕ New Playlist Input & Add Button */
+.library-box .new-playlist {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.library-box .new-playlist input {
+  flex: 1;
+  padding: 6px 10px;
+  border: 2px solid #000;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: 'Comic Neue', cursive;
+  background-color: #fafafa;
+  outline: none;
+}
+
+.library-box .new-playlist button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 2px solid black;
+  background-color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  font-family: 'Comic Neue', cursive;
+}
+
+.library-box .new-playlist button:hover {
+  background-color: #6e1db9;
+  color: white;
+  border-color: #6e1db9;
+}
+.context-menu {
+  position: absolute;
+  display: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+  z-index: 1000;
+  padding: 5px 0;
+  width: 180px;
+  font-family: 'Patrick Hand', cursive;
+}
+
+.context-menu li {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.context-menu li:hover {
+  background-color: #f0f0f0;
+}
+
+.recommended ul li {
+  cursor: pointer;
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+.recommended ul li:hover {
+  background-color: #f0f0f0;
+}
+
+#playlistList li {
+  cursor: pointer;
+  padding: 3px 0;
+}
+
+#playlistList li:hover {
+  text-decoration: underline;
+}
+
+.recommended h3 {
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+  
+}
+
+.recommended button {
+  margin-bottom: 1rem;
+}
+/* -------------------------
+   Mobile responsive overrides
+   Paste at the END of Style.css
+   ------------------------- */
+
+@media (max-width: 900px) {
+  /* Allow vertical scrolling on small screens (overrides earlier overflow:hidden) */
+  html, body {
+    height: auto !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Reduce page padding for mobile */
+  body {
+    padding: 12px;
+  }
+
+  /* Make the main container fluid and let it grow */
+  .container {
+    width: calc(100% - 24px);
+    max-width: 100%;
+    height: auto !important;
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  /* Stack columns vertically and remove forced heights */
+  .content-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    height: auto !important;
+  }
+
+  /* Player: full width, smaller card */
+  .audio-player {
+    align-items: center;
+  }
+  .player {
+    width: 100%;
+    max-width: 520px; /* keeps it reasonable on larger phones */
+    margin: 0 auto;
+    height: auto !important;
+    padding: 12px;
+  }
+  .cover {
+    width: 100%;
+    height: auto;
+    max-height: 40vh;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  .title {
+    font-size: 1.05rem;
+    margin: 10px 0;
+  }
+
+  /* Make control icons smaller */
+  .control-buttons button {
+    width: 40px;
+    height: 40px;
+    padding: 6px;
+    font-size: 1rem;
+    border-radius: 50%;
+  }
+
+  /* Recommended: full width & single column */
+  .recommended-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px;
+    margin: 0 auto;
+  }
+  .recommended ul {
+    grid-template-columns: 1fr !important; /* force single column */
+    gap: 10px;
+    max-height: none;
+    overflow: visible;
+  }
+  .recommended ul li {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  /* Right column (playlists + queue): become full width stacked */
+  .right-column {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .library-box, .queue-box {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  .queue-box {
+    height: auto;
+  }
+  .queue-box ul {
+    max-height: 160px; /* internal scroll */
+    overflow-y: auto;
+  }
+  .library ul {
+    max-height: 140px;
+    overflow-y: auto;
+  }
+
+  /* Navbar: keep everything in a single row but shrink gaps and padding */
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 8px 12px;
+    gap: 8px;
+  }
+  .navbar .logo {
+    font-size: 20px;
+  }
+  .nav-links {
+    gap: 12px;
+  }
+
+  /* Volume control and other inline items */
+  .volume-control, .volume-control h1 {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  #volumeControl {
+    max-width: 160px;
+    width: 40vw;
+  }
+
+  /* Trivia popup & song info overlay: stay centered & small */
+  .trivia-popup {
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%);
+    width: calc(100% - 40px);
+    max-width: 360px;
+    height: auto;
+    padding: 12px;
+  }
+  .trivia-popup p { font-size: 15px; }
+
+  .song-info-box {
+    width: calc(100% - 36px);
+    max-width: 340px;
+    padding: 12px;
+  }
+
+  /* Reduce margins on search box so it fits */
+  .search-box { padding: 0 6px; }
+  .search { width: 100%; max-width: 520px; }
+
+  /* Make sure nothing causes horizontal overflow */
+  .player, .recommended-container, .library-box, .queue-box, .container, .navbar {
+    min-width: 0;
+    box-sizing: border-box;
+  }
+}

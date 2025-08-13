@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="Style.css" />
+  <title>Zeta</title>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div clas="glass">
+  <div class="container">
+    
+<!-- 🎵 Navigation Bar -->
+<nav class="navbar" role="navigation" aria-label="Main Navigation">
+  <div class="logo" aria-label="Zeta Logo">🎵 Zeta</div>
+
+  <!-- 🎚 Volume Control -->
+  <div class="volume-control" style="display: flex; align-items:end; margin-left: 15px;">
+    <h1 style="margin: 0; font-size: 16px;">Volume</h1>
+    <input 
+      type="range" 
+      id="volumeControl" 
+      min="0" 
+      max="1" 
+      step="0.01" 
+      value="1" 
+      aria-label="Volume Control"
+      style="width: 120px; margin-left: 5px;"
+    >
+  </div>
+
+ 
+</nav>
+
+
+
+
+    <!-- Wrapper -->
+    <div class="content-wrapper">
+      
+      <!-- 🎧 Left Column: Music Player -->
+      <section class="audio-player" aria-label="Music Player">
+        <div class="player">
+          <img src="Hotelcalifornia.jpg" alt="Hotel California Album Cover" class="cover" />
+          <h2 class="title">Hotel California</h2>
+          <audio id="audio" src="hotel.mp3"></audio>
+
+          <!-- Player Controls -->
+          <div class="controls">
+            <div class="control-buttons">
+              <button id="prevBtn" aria-label="Previous">⏮️</button>
+              <button id="playPauseBtn" aria-label="Play or Pause">▶️</button>
+              <button id="nextBtn" aria-label="Next">⏭️</button>
+              <button id="infoBtn" aria-label="info">🛈</button>
+            </div>
+            <input type="range" id="progress" value="0" step="1" aria-label="Track Progress" />
+          </div>
+          
+
+          <!-- 💡 Trivia Trigger -->
+          <p class="trivia-trigger">
+            Wanna know a trivia about this song?
+          </p>
+
+          <!-- 💡 Trivia Popup -->
+          <div class="trivia-popup" style="display: none; position: absolute; background: white; border: 1px solid #ccc; padding: 15px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); max-width: 300px; z-index: 1000;">
+            <h3>Trivia</h3>
+            <p id="trivia-content">Click play to learn something fun about the artist or song!</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 🎯 Center Column: Recommended Songs -->
+      <section class="recommended-container" aria-label="Recommended Songs">
+        <div class="recommended">
+          <h3>🎧 Recommended</h3>
+          <ul>
+            <li class="recommended-song">
+              Blinding Lights – The Weeknd
+              <div class="add-buttons">
+                <button>Add to Queue</button>
+                <button>Add to Playlist</button>
+              </div>
+            </li>
+            <li class="recommended-song">
+              Levitating – Dua Lipa
+              <div class="add-buttons">
+                <button>Add to Queue</button>
+                <button>Add to Playlist</button>
+              </div>
+            </li>
+            <li class="recommended-song">
+              Peaches – Justin Bieber
+              <div class="add-buttons">
+                <button>Add to Queue</button>
+                <button>Add to Playlist</button>
+              </div>
+            </li>
+            <li class="recommended-song">
+              Watermelon Sugar – Harry Styles
+              <div class="add-buttons">
+                <button>Add to Queue</button>
+                <button>Add to Playlist</button>
+              </div>
+            </li>
+            <li class="recommended-song">
+              Good 4 U – Olivia Rodrigo
+              <div class="add-buttons">
+                <button>Add to Queue</button>
+                <button>Add to Playlist</button>
+              </div>
+            </li>
+            <li class="recommended-song">
+              Save Your Tears – The Weeknd
+              <div class="add-buttons">
+                <button>Add to Queue</button>
+                <button>Add to Playlist</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 📦 Right Column -->
+      <aside class="right-column" aria-label="Playlist and Queue">
+
+        <!-- 📁 Your Playlists -->
+        <div class="library-box">
+          <div class="library">
+            <h3>Your Playlists</h3>
+            <ul id="playlistList">
+              <!-- JS Populated -->
+            </ul>
+            <div class="new-playlist">
+              <input type="text" id="newPlaylistInput" placeholder="New playlist name…" aria-label="New Playlist Name" />
+              <button id="addPlaylistBtn">＋ Add</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ✅ Current Queue -->
+        <div class="queue-box">
+          <h3>Queue</h3>
+          <ul id="queueList" class="queue-list" aria-label="Current Queue">
+            <!-- JS Populated -->
+          </ul>
+        </div>
+
+      </aside>
+    </div>
+
+    <!-- 🔍 Search Bar -->
+    <div class="search-box">
+      <input type="text" class="search" placeholder="Search your song…" aria-label="Search your song" />
+    </div>
+
+  </div>
+  </div>
+
+  <!-- JS Files -->
+  <script src="songs.js"></script>
+  <script src="player.js"></script>
+  <script src="playlist.js"></script>
+
+
+
+  <!-- Context Menu -->
+  <ul id="contextMenu" class="context-menu" role="menu">
+    <li id="removeFromQueue" role="menuitem">🗑️ Remove from Queue</li>
+    <li id="shareSong" role="menuitem">🔗 Share</li>
+  </ul>
+</body>
+
+</html>
